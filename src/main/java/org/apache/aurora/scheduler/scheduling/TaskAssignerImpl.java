@@ -107,8 +107,8 @@ public class TaskAssignerImpl implements TaskAssigner {
         offer.getAgentId(),
         task -> mapAndAssignResources(offer, task));
     LOG.info(
-        "The Offer {} on agent {} (id {}) is being assigned task for {}.",
-        offer.getId().getValue(), host, offer.getAgentId().getValue(), taskId);
+        "Offer on agent {} (id {}) is being assigned task for {}.",
+        host, offer.getAgentId().getValue(), taskId);
     return taskFactory.createFrom(assigned, offer, revocable);
   }
 

@@ -18,9 +18,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.Cache;
 import com.google.common.collect.FluentIterable;
@@ -62,8 +59,6 @@ class HostOffers {
   // Keep track of the number of offers evaluated for vetoes when getting matching offers
   private final AtomicLong vetoEvaluatedOffers;
 
-  private static final Logger LOG = LoggerFactory.getLogger(HostOffers.class);
-
   HostOffers(StatsProvider statsProvider,
              OfferSettings offerSettings,
              SchedulingFilter schedulingFilter) {
@@ -103,8 +98,7 @@ class HostOffers {
     return Optional.empty();
   }
 
-  private synchronized void addInternal(HostOffer offer) {
-    LOG.info("Calling addInternal");
+  private void addInternal(HostOffer offer) {
     offers.add(offer);
     offersById.put(offer.getOffer().getId(), offer);
     offersBySlave.put(offer.getOffer().getAgentId(), offer);
